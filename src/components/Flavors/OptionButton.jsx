@@ -27,9 +27,7 @@ export const OptionButton = ({
                 onClick={() => onClick(name, color)}
                 $active={active}
               >
-                {active && "* "}
                 {name}
-                {active && " *"}
               </ButtonFlavorLabel>
             )
           })}
@@ -43,7 +41,13 @@ const ButtonFlavorLabel = styled.span.attrs((props) => ({
     textDecoration: props.$active ? "underline" : "none",
   },
 }))`
+  background-color: #ffffff86;
+
   display: block;
+  padding-block: 0.15em;
+  margin-block: 0.25em;
+
+  border-radius: 0.25em;
 `
 
 const ButtonLabel = styled.label.attrs((props) => ({
