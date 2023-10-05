@@ -1,5 +1,6 @@
 import { useState } from "react"
 import styled from "styled-components"
+import { AiOutlineCheck } from "react-icons/ai"
 
 export const OptionButton = ({
   nameChoose,
@@ -28,6 +29,7 @@ export const OptionButton = ({
                 $active={active}
               >
                 {name}
+                {active && <CheckIcon />}
               </ButtonFlavorLabel>
             )
           })}
@@ -36,14 +38,26 @@ export const OptionButton = ({
   )
 }
 
+const CheckIcon = styled(AiOutlineCheck)`
+  position: absolute;
+  right: 0.25em;
+
+  width: 1em;
+  height: 1em;
+`
+
 const ButtonFlavorLabel = styled.span.attrs((props) => ({
   style: {
-    textDecoration: props.$active ? "underline" : "none",
+    border: props.$active ? "1px solid #222" : "none",
   },
 }))`
+  position: relative;
   background-color: #ffffff86;
 
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   padding-block: 0.15em;
   margin-block: 0.25em;
 

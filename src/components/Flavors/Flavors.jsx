@@ -2,6 +2,8 @@ import styled from "styled-components"
 import { ContentLimit } from "../Common/ContentLimit"
 import { useState } from "react"
 import { OptionButton } from "./OptionButton"
+import { Pizza } from "./Pizza"
+import { createArray } from "../Common/utils"
 
 const flavorsList = [
   { name: "Calabresa", color: "#ff2525" },
@@ -12,20 +14,24 @@ const flavorsList = [
   { name: "Quatro Queijos", color: "#db9e19" },
 ]
 
-export const Flavors = ({ listFlavors }) => {
-  const [flavors, setFlavors] = useState(listFlavors)
+export const Flavors = () => {
+  const [flavors, setFlavors] = useState(
+    createArray(4, { name: "", color: "" })
+  )
 
   console.log(flavors)
 
   return (
     <Container>
       Flavors
+      <Pizza flavors={flavors} />
       {flavors.map(({ name, color }, index) => (
         <OptionButton
           key={index}
           nameChoose={name}
           colorChoose={color}
           flavorsList={flavorsList}
+          active={flavors[index !== 0 && index - 1]?.name !== ""}
           onClick={(name, color) =>
             setFlavors((state) => {
               state[index] = { name, color }
