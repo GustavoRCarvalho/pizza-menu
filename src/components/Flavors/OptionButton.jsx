@@ -7,16 +7,18 @@ export const OptionButton = ({
   colorChoose,
   flavorsList,
   onClick,
+  active,
 }) => {
   const [open, setOpen] = useState(false)
 
   return (
     <ButtonBackground
+      onClick={() => active && setOpen((state) => !state)}
       $color={colorChoose}
-      onClick={() => setOpen((state) => !state)}
+      $active={active}
       $open={open}
     >
-      <ButtonLabel $color={colorChoose} $open={open}>
+      <ButtonLabel $color={colorChoose} $open={open} $active={active}>
         {open ? "" : nameChoose !== "" ? nameChoose : "Opções"}
         {open &&
           flavorsList.map(({ name, color }) => {
@@ -68,6 +70,7 @@ const ButtonLabel = styled.label.attrs((props) => ({
   style: {
     backgroundColor: props.$color !== "" ? "#ffffff84" : "#ffffff7a",
     borderRadius: props.$open ? "0.5em" : "2em",
+    cursor: props.$active ? "pointer" : "normal",
   },
 }))`
   display: block;
@@ -79,18 +82,22 @@ const ButtonLabel = styled.label.attrs((props) => ({
   padding-block: 0.5em;
   padding-inline: 1em;
 
-  cursor: pointer;
   transition: 500ms;
 `
 
 const ButtonBackground = styled.div.attrs((props) => ({
   style: {
-    backgroundColor: props.$color !== "" ? props.$color : "#cccccc77",
+    backgroundColor:
+      props.$color !== ""
+        ? props.$color
+        : props.$active
+        ? "#cccccc77"
+        : "#cccccc32",
     borderRadius: props.$open ? "1em" : "2em",
+    cursor: props.$active ? "pointer" : "normal",
   },
 }))`
   padding: 0.5em;
 
-  cursor: pointer;
   transition: 500ms;
 `

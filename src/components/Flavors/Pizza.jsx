@@ -2,6 +2,16 @@ import styled from "styled-components"
 import image from "../../assets/Pizza.png"
 
 export const Pizza = ({ flavors }) => {
+  const numberFlavors = () => {
+    let count = 0
+    flavors.map(({ name }) => {
+      if (name !== "") {
+        return (count += 1)
+      }
+    })
+    return count
+  }
+
   return (
     <div
       style={{
@@ -11,27 +21,51 @@ export const Pizza = ({ flavors }) => {
         justifyContent: "center",
       }}
     >
-      Pizza
+      Pizza - {numberFlavors()}
       <ImageContainer>
         <Image
           src={image}
           $filter={"grayscale(20%)"}
-          $porcent={flavors[3].name !== "" ? "100%" : "0%"}
+          $porcent={numberFlavors() === 4 ? "100%" : "0%"}
         />
         <Image
           src={image}
           $filter={"grayscale(40%)"}
-          $porcent={flavors[2].name !== "" ? "75%" : "0%"}
+          $porcent={
+            numberFlavors() === 3
+              ? "100%"
+              : numberFlavors() === 4
+              ? "75%"
+              : "0%"
+          }
         />
         <Image
           src={image}
           $filter={"grayscale(60%)"}
-          $porcent={flavors[1].name !== "" ? "50%" : "0%"}
+          $porcent={
+            numberFlavors() === 2
+              ? "100%"
+              : numberFlavors() === 3
+              ? "66%"
+              : numberFlavors() === 4
+              ? "50%"
+              : "0%"
+          }
         />
         <Image
           src={image}
           $filter={"grayscale(80%)"}
-          $porcent={flavors[0].name !== "" ? "25%" : "0%"}
+          $porcent={
+            numberFlavors() === 1
+              ? "100%"
+              : numberFlavors() === 2
+              ? "50%"
+              : numberFlavors() === 3
+              ? "33%"
+              : numberFlavors() === 4
+              ? "25%"
+              : "0%"
+          }
         />
       </ImageContainer>
     </div>

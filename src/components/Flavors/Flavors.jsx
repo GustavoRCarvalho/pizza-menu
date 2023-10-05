@@ -19,8 +19,6 @@ export const Flavors = () => {
     createArray(4, { name: "", color: "" })
   )
 
-  console.log(flavors)
-
   return (
     <Container>
       Flavors
