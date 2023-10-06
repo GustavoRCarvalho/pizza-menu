@@ -4,19 +4,23 @@ import { useState } from "react"
 import { OptionButton } from "./OptionButton"
 import { Pizza } from "./Pizza"
 import { createArray } from "../Common/utils"
+import PizzaFile from "../../assets/Pizza-File.png"
+import PizzaCalabresa from "../../assets/Pizza-Calabresa.png"
+import PizzaLombo from "../../assets/Pizza-Lombo.png"
+import PizzaQuatro from "../../assets/Pizza-Quatro.png"
+import PizzaFritas from "../../assets/Pizza-Fritas.png"
 
 const flavorsList = [
-  { name: "Calabresa", color: "#ff2525" },
-  { name: "Filé c/ Fritas", color: "#8f4d22" },
-  { name: "Fritas", color: "#eeda24" },
-  { name: "Lombo", color: "#fa7373" },
-  { name: "Moda da Casa", color: "#28378b" },
-  { name: "Quatro Queijos", color: "#db9e19" },
+  { name: "Calabresa", color: "#ff2525", src: PizzaCalabresa },
+  { name: "Filé c/ Fritas", color: "#8f4d22", src: PizzaFile },
+  { name: "Fritas", color: "#eeda24", src: PizzaFritas },
+  { name: "Lombo", color: "#fa7373", src: PizzaLombo },
+  { name: "Quatro Queijos", color: "#db9e19", src: PizzaQuatro },
 ]
 
 export const Flavors = () => {
   const [flavors, setFlavors] = useState(
-    createArray(4, { name: "", color: "" })
+    createArray(4, { name: "", color: "", src: "" })
   )
 
   return (
@@ -30,9 +34,9 @@ export const Flavors = () => {
           colorChoose={color}
           flavorsList={flavorsList}
           active={flavors[index !== 0 && index - 1]?.name !== ""}
-          onClick={(name, color) =>
+          onClick={(name, color, src) =>
             setFlavors((state) => {
-              state[index] = { name, color }
+              state[index] = { name, color, src }
               return [...state]
             })
           }

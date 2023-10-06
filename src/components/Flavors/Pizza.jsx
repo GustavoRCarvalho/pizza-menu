@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import image from "../../assets/Pizza.png"
+import image from "../../assets/Pizza-Calabresa.png"
 
 export const Pizza = ({ flavors }) => {
   const numberFlavors = () => {
@@ -21,16 +21,14 @@ export const Pizza = ({ flavors }) => {
         justifyContent: "center",
       }}
     >
-      Pizza - {numberFlavors()}
+      Pizza - {numberFlavors()} Sabores
       <ImageContainer>
         <Image
-          src={image}
-          $filter={"grayscale(20%)"}
+          src={flavors[3].src !== "" ? flavors[3].src : image}
           $porcent={numberFlavors() === 4 ? "100%" : "0%"}
         />
         <Image
-          src={image}
-          $filter={"grayscale(40%)"}
+          src={flavors[2].src !== "" ? flavors[2].src : image}
           $porcent={
             numberFlavors() === 3
               ? "100%"
@@ -40,8 +38,7 @@ export const Pizza = ({ flavors }) => {
           }
         />
         <Image
-          src={image}
-          $filter={"grayscale(60%)"}
+          src={flavors[1].src !== "" ? flavors[1].src : image}
           $porcent={
             numberFlavors() === 2
               ? "100%"
@@ -53,8 +50,7 @@ export const Pizza = ({ flavors }) => {
           }
         />
         <Image
-          src={image}
-          $filter={"grayscale(80%)"}
+          src={flavors[0].src !== "" ? flavors[0].src : image}
           $porcent={
             numberFlavors() === 1
               ? "100%"
@@ -85,7 +81,6 @@ const ImageContainer = styled.div`
 
 const Image = styled.img.attrs((props) => ({
   style: {
-    filter: props.$filter,
     "--clock-hands-position": props.$porcent,
   },
 }))`

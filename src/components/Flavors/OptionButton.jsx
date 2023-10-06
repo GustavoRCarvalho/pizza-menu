@@ -21,13 +21,13 @@ export const OptionButton = ({
       <ButtonLabel $color={colorChoose} $open={open} $active={active}>
         {open ? "" : nameChoose !== "" ? nameChoose : "Opções"}
         {open &&
-          flavorsList.map(({ name, color }) => {
+          flavorsList.map(({ name, color, src }) => {
             let active = nameChoose === name
 
             return (
               <ButtonFlavorLabel
                 key={"flavor" + name}
-                onClick={() => onClick(name, color)}
+                onClick={() => onClick(name, color, src)}
                 $active={active}
               >
                 {name}
