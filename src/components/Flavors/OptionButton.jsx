@@ -1,8 +1,11 @@
 import { useState } from "react"
 import styled from "styled-components"
-import { AiOutlineCheck } from "react-icons/ai"
+import { AiOutlineCheck, AiOutlineClose } from "react-icons/ai"
+import { removeAndShift } from "../Common/utils"
 
 export const OptionButton = ({
+  index,
+  setFlavors,
   nameChoose,
   colorChoose,
   flavorsList,
@@ -11,14 +14,20 @@ export const OptionButton = ({
 }) => {
   const [open, setOpen] = useState(false)
 
+  const deleteFlavor = (index) => {
+    setFlavors((state) => [
+      ...removeAndShift(state, index, { name: "", color: "", src: "" }),
+    ])
+  }
+
   return (
-    <ButtonBackground
-      onClick={() => active && setOpen((state) => !state)}
-      $color={colorChoose}
-      $active={active}
-      $open={open}
-    >
-      <ButtonLabel $color={colorChoose} $open={open} $active={active}>
+    <ButtonBackground $color={colorChoose} $active={active} $open={open}>
+      <ButtonLabel
+        onClick={() => active && setOpen((state) => !state)}
+        $color={colorChoose}
+        $open={open}
+        $active={active}
+      >
         {open ? "" : nameChoose !== "" ? nameChoose : "Opções"}
         {open &&
           flavorsList.map(({ name, color, src }) => {
@@ -36,6 +45,9 @@ export const OptionButton = ({
             )
           })}
       </ButtonLabel>
+      {active && nameChoose !== "" && (
+        <CloseIcon onClick={() => deleteFlavor(index)} />
+      )}
     </ButtonBackground>
   )
 }
@@ -46,6 +58,15 @@ const CheckIcon = styled(AiOutlineCheck)`
 
   width: 1em;
   height: 1em;
+`
+
+const CloseIcon = styled(AiOutlineClose)`
+  position: absolute;
+  right: -2em;
+  color: white;
+
+  width: 1.5em;
+  height: 1.5em;
 `
 
 const ButtonFlavorLabel = styled.span.attrs((props) => ({
@@ -97,6 +118,12 @@ const ButtonBackground = styled.div.attrs((props) => ({
     cursor: props.$active ? "pointer" : "normal",
   },
 }))`
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   padding: 0.5em;
 
   transition: 500ms;

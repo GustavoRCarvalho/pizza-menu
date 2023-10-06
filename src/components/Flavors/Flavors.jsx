@@ -30,9 +30,11 @@ export const Flavors = () => {
       {flavors.map(({ name, color }, index) => (
         <OptionButton
           key={index}
+          index={index}
           nameChoose={name}
           colorChoose={color}
           flavorsList={flavorsList}
+          setFlavors={setFlavors}
           active={flavors[index !== 0 && index - 1]?.name !== ""}
           onClick={(name, color, src) =>
             setFlavors((state) => {
@@ -42,14 +44,6 @@ export const Flavors = () => {
           }
         />
       ))}
-      {/* {flavorsList.map(({ name, color }) => (
-        <ButtonBackground
-          $color={color}
-          key={name}
-        >
-          <ButtonLabel $color={color}>{name}</ButtonLabel>
-        </ButtonBackground>
-      ))} */}
     </Container>
   )
 }

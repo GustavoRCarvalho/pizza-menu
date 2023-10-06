@@ -24,10 +24,12 @@ export const Pizza = ({ flavors }) => {
       Pizza - {numberFlavors()} Sabores
       <ImageContainer>
         <Image
+          title="Image 1 Pizza"
           src={flavors[3].src !== "" ? flavors[3].src : image}
           $porcent={numberFlavors() === 4 ? "100%" : "0%"}
         />
         <Image
+          title="Image 2 Pizza"
           src={flavors[2].src !== "" ? flavors[2].src : image}
           $porcent={
             numberFlavors() === 3
@@ -38,6 +40,7 @@ export const Pizza = ({ flavors }) => {
           }
         />
         <Image
+          title="Image 3 Pizza"
           src={flavors[1].src !== "" ? flavors[1].src : image}
           $porcent={
             numberFlavors() === 2
@@ -50,6 +53,7 @@ export const Pizza = ({ flavors }) => {
           }
         />
         <Image
+          title="Image 4 Pizza"
           src={flavors[0].src !== "" ? flavors[0].src : image}
           $porcent={
             numberFlavors() === 1
@@ -87,12 +91,14 @@ const Image = styled.img.attrs((props) => ({
   position: absolute;
   width: 100%;
   height: 100%;
+  padding: 1em;
 
   -webkit-mask-image: conic-gradient(
     black var(--clock-hands-position),
     transparent 0deg
   );
 
+  filter: drop-shadow(0px 0px 1px white);
   transition: --clock-hands-position 1s linear;
 
   @property --clock-hands-position {
