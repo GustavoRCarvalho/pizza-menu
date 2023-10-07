@@ -1,5 +1,7 @@
 import styled from "styled-components"
 import image from "../../assets/Pizza-Calabresa.png"
+import caixaBaixo from "../../assets/Caixa-Baixo.png"
+import caixaCima from "../../assets/Caixa-Cima.png"
 
 export const Pizza = ({ flavors }) => {
   const numberFlavors = () => {
@@ -67,12 +69,14 @@ export const Pizza = ({ flavors }) => {
               : "0%"
           }
         />
+        <CaixaCimaImage src={caixaCima} $open={numberFlavors() !== 0} />
       </ImageContainer>
     </div>
   )
 }
 
 const ImageContainer = styled.div`
+  background-image: url(${caixaBaixo});
   position: relative;
 
   width: 10em;
@@ -83,14 +87,27 @@ const ImageContainer = styled.div`
   justify-content: center;
 `
 
+const CaixaCimaImage = styled.img.attrs((props) => ({
+  style: {
+    transform: props.$open ? "rotateX(90deg)" : "rotateX(0deg)",
+    bottom: props.$open ? "50%" : "0%",
+  },
+}))`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+
+  transition: 1s linear;
+`
+
 const Image = styled.img.attrs((props) => ({
   style: {
     "--clock-hands-position": props.$porcent,
   },
 }))`
   position: absolute;
-  width: 100%;
-  height: 100%;
+  width: 90%;
+  height: 90%;
   padding: 1em;
 
   -webkit-mask-image: conic-gradient(
