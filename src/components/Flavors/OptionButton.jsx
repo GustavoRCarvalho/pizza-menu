@@ -99,11 +99,36 @@ const ButtonLabel = styled.label.attrs((props) => ({
 
   width: max-content;
   min-width: 8em;
+  max-height: 15em;
+  overflow: auto;
 
   padding-block: 0.5em;
   padding-inline: 1em;
 
   transition: 500ms;
+
+  /* width */
+  &::-webkit-scrollbar {
+    width: 7px;
+  }
+
+  /* Track */
+  &::-webkit-scrollbar-track {
+    background: transparent;
+    margin: 0.4em;
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: #00000066;
+
+    border-radius: 1em;
+  }
+
+  /* Handle on hover */
+  &::-webkit-scrollbar-thumb:active {
+    background: #000000aa;
+  }
 `
 
 const ButtonBackground = styled.div.attrs((props) => ({

@@ -3,7 +3,7 @@ import image from "../../assets/Pizza-Calabresa.png"
 import caixaBaixo from "../../assets/Caixa-Baixo.png"
 import caixaCima from "../../assets/Caixa-Cima.png"
 
-export const Pizza = ({ flavors }) => {
+export const Pizza = ({ flavors, size }) => {
   const numberFlavors = () => {
     let count = 0
     flavors.map(({ name }) => {
@@ -12,6 +12,20 @@ export const Pizza = ({ flavors }) => {
       }
     })
     return count
+  }
+  const sizeImage = () => {
+    switch (size) {
+      case 0:
+        return "6em"
+      case 1:
+        return "8em"
+      case 2:
+        return "10em"
+      case 3:
+        return "12em"
+      default:
+        return "10em"
+    }
   }
 
   return (
@@ -24,7 +38,7 @@ export const Pizza = ({ flavors }) => {
       }}
     >
       Pizza - {numberFlavors()} Sabores
-      <ImageContainer>
+      <ImageContainer $size={sizeImage()}>
         <Image
           title="Image 1 Pizza"
           src={flavors[3].src !== "" ? flavors[3].src : image}
@@ -75,7 +89,12 @@ export const Pizza = ({ flavors }) => {
   )
 }
 
-const ImageContainer = styled.div`
+const ImageContainer = styled.div.attrs((props) => ({
+  style: {
+    width: props.$size ?? "10em",
+    height: props.$size ?? "10em",
+  },
+}))`
   background-image: url(${caixaBaixo});
   position: relative;
 
@@ -85,6 +104,8 @@ const ImageContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  transition: 1s;
 `
 
 const CaixaCimaImage = styled.img.attrs((props) => ({
