@@ -13,7 +13,7 @@ export const Pizza = ({ flavors, size }) => {
     })
     return count
   }
-  const sizeImage = () => {
+  function sizeImage() {
     switch (size) {
       case 0:
         return "8em"
