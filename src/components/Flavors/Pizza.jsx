@@ -16,13 +16,13 @@ export const Pizza = ({ flavors, size }) => {
   const sizeImage = () => {
     switch (size) {
       case 0:
-        return "6em"
-      case 1:
         return "8em"
+      case 1:
+        return "9em"
       case 2:
         return "10em"
       case 3:
-        return "12em"
+        return "11em"
       default:
         return "10em"
     }
